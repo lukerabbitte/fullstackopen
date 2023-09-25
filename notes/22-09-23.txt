@@ -1,0 +1,9 @@
+- onreadystatechange was an old function which didn't use promises. It did an if statement to see whether the readyState was 4 (which in the implementation of
+xhttp, meant that the request was done), and that the response code was 200, then proceeded.
+
+- Runner.prototype.gameOver = function (){} which overwrites the gameOver function with an empty one, and Runner.instance_.tRex.setJumpVelocity(15).
+
+- In react, multiple components can be declared within the same file. Every time we use a parent component from a child, we can simply pass the exact data we want
+to pass the parent as props. This is kinda like HTML attributes. <Hello name='Maya' age={Date.today.minus(Date(24-06-1998))} />
+
+- Objects can't be printed as a React child. We need a primitive data type.
