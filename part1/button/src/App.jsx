@@ -3,36 +3,26 @@ import { useState } from 'react'
 const Clicker = () => {
 
   const [count, setCount] = useState(0);
-
-  const operations = {
-    'addOne': () => setCount(count + 1),
-    'subtractOne': () => setCount(count - 1),
-    'square': () => setCount(count * count),
-    'cube': () => setCount(count * count * count)
-  };
     
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={operations['addOne']}>Add one</button>
-      <button onClick={operations['subtractOne']}>Subtract one</button>
-      <button onClick={operations['square']}>Square</button>
-      <button onClick={operations['cube']}>Cube</button>
+      <button onClick={() => setCount(count+1)}>Add one</button>
+      <button onClick={() => setCount(count-1)}>Subtract one</button>
+      <button onClick={() => setCount(count*count)}>Square</button>
+      <button onClick={() => setCount(count*count*count)}>Cube</button> {/* Declare event handlers directly. */}
     </div>
   )
 }
 
-const Hello = (props) => {
+const Hello = ({ name, age }) => { {/* Don't always have to pass the entire props object in. */}
 
-  const birthYearGuess = () => {
-    const yearNow = new Date().getFullYear();
-    return (yearNow - props.age);
-  }
+  const birthYearGuess = () => new Date().getFullYear() - age;
 
   return (
     <div>
       <p>
-        Hello {props.name}, you are {props.age} years old
+        Hello {name}, you are {age} years old
       </p>
       <p>
         You were probably born in {birthYearGuess()}.
