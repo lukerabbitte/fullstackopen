@@ -1,0 +1,31 @@
+function sayHello() {
+  console.log('Hello!');
+}
+
+const myObject = {
+  greeting: sayHello
+};
+
+myObject.greeting(); // Output: Hello!
+
+- ^ Functions can be used as property values in an object.
+
+
+function greet() {
+    console.log("Hello");
+}
+
+greet.sayGoodbye = function() {
+    console.log("Goodbye");
+}
+
+// greet.sayGoodbye = () => console.log("Goodbye")
+
+greet.sayGoodbye();
+
+^ Can add functions as new object properties to a previous function. Can add any properties.
+
+- Like all objects, the reference is immutable, not the contents. The contents can be changed if it is an object (i.e, a non primitive type)
+
+- These code examples above create nested functions. Importantly, nested functions can access their parent's properties.
+

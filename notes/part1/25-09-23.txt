@@ -1,0 +1,90 @@
+- const used when we want immutable declarations. const x = 5, then we can't say x = 6 later.
+
+- t.concat(5) is used to add stuff immutably to the array 't'
+
+- t.map(value => '<li>' + value + '</li>') ... make html straight from an array. Used often in React.
+
+- Destructuring... const t = [1,2,3,4,5] and then later say const [first, second, ...rest] = t and then we have split the array into two variables and a small new array.
+
+- Objects can have methods described on them like {firstName:"bob", surname:"thomas", fullName:function() {return this.firstName + this.surname;}}
+
+- If we want to use inheritance or have multiple instances of a class across a large project, can also say something like:
+
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    fullName() {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+
+- Being able to assign functions to variable names in JS is a result of functions being first-class citizens. This is also in Swift, Python, Ruby.
+
+- this keyword loses its power when we reference an object from outside. A function called greet that has as body console.log(this.name) could be a method inside
+an object, then if we create a reference to the method referenceToGreet = person.greet() and then run referenceToGreet(), it will try and access this as the
+so-called global object.
+
+- One way to preserve the binding of this is by forcing it using the bind method. person.greet.bind(person)
+
+- Arrow functions 'this' is their outer execution context.
+
+- Undefined is returned by most functions, unless a specific return keyword given. Everytime we declare and assign a variable, we are invoking a function
+that returns nothing.
+
+- Boolean() can be used manually to figure out the truthy-ness or falsey-ness of a value.
+
+- Things like 0, null, NaN, etc. evaluate to false, and everything else evaluates to true. 0 is falsey, "thristle" is truthy.
+
+- The === in JS is better, because it doesn't try do type coercion. 123==="123" will happily evaluate to false.
+
+- Try run setTimeout after calling an infinite loop - it won't run until call stack is empty!
+
+- Iterables in JS don't inherit from any big bad parent class like in Java, all they do is implement a method called Symbol.iterator, which returns an iterator object.
+
+- We can then use spread syntax which takes elements of an iterable and unlocks them from their data structure into individual values.
+
+- const arr=[1, 2, 3, 4, 5]
+  const sum = (a, b, c) => a + b + c;
+
+  const[i, ii, iii] = arr;
+  const result = sum(...[i, ii, iii]);
+  console.log(result);
+
+- ^ This technique is using both spread syntax to remove the iterability of elements of an array, and array destructuring.
+
+- for (const [key, value] of myMap) {console.log(`${key} = ${value}`)}
+
+- ^ Use backticks for variable expansion.
+
+- Use for in for other purposes, such as iterating over the properties in an object.
+
+- We need to be careful because for in iteration of objects will include properties declared in the object's big overarching prototype.
+
+- JS objects are like HashMaps in Java or dictionaries in Python, or Hash Tables in C, C++.
+
+- Hash function takes an input which is the key and returns the index to an array table (modulo if we want this table to be certain size).
+
+- If there is already a key/value struct or pair at that hash code index, append the new pair to the linked list. Conflict strategy.
+
+- Hash tables designed for blazing fast insertion and access, but not for search based on value.
+
+- Most languages provide a map or dictionary structure with good functions for searching by value too.
+
+- This is just like the index in a book. By searching a word, we cand find the page. Knowing the value, we can keep an index of where it appears.
+
+- Hash tables aren't as good at sequential access as arrays. We can implement simple key-value pairs using the inherent indices of arrays.
+
+- Two separately-created objects can never be equal in JS, because they are different references. If you have two references, then they are treated as the same.
+
+- JS is pass-by-value for primitive types but pass-by-reference for objects. This means objects are passed as references with same memory position.
+
+- * Arrays in JS are just objects. If you make an array with a million null slots in the middle, you have a sparse array. If this happens, the engine will
+de-optimise it into being a hash table! So make sure you're reaping the benefits of the sequential, one after the other access of an array.
+
+- length is the magic property that elevates an array from a normal object into an array.
+
+- With poor hash function, we have appended all 'n' elements to the linked list at one array index. This gives insertion time of n.
+
+- Be careful in JS, deep recursion from just calling the same function within a for loop is not always the best approach.

@@ -7,3 +7,17 @@ xhttp, meant that the request was done), and that the response code was 200, the
 to pass the parent as props. This is kinda like HTML attributes. <Hello name='Maya' age={Date.today.minus(Date(24-06-1998))} />
 
 - Objects can't be printed as a React child. We need a primitive data type.
+
+
+
+
+
+const Content = () => {
+
+
+}
+
+const Total = () => {
+
+
+}

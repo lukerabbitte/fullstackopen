@@ -1,0 +1,15 @@
+try {
+  buildMySite("./website");
+} catch (e) {
+  if (e instanceof RangeError) {
+    console.error("Seems like a parameter is out of range:", e);
+    console.log("Retrying...");
+    buildMySite("./website");
+  } else {
+    // Don't know how to handle other error types; throw them so
+    // something else up in the call stack may catch and handle it
+    throw e;
+  }
+}
+
+- ^ It's good to check the type of error e that gets caught. If it is not of this type we can simply throw it.

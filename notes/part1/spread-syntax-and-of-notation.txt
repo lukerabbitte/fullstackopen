@@ -1,0 +1,16 @@
+function sum(...args) {
+
+    let total=0;
+
+    for element of args {
+        return total += element;
+    }
+
+    return total;
+}
+
+- ^ This is how we can use spread syntax to get discrete and stand-alone variable unshackled from their array.
+
+- We can set default parameters like function avg(firstValue=0, secondValue=2) so that nothing will be undefined.
+
+- We can set default parameters like function avg(firstValue, ...args)
