@@ -6,3 +6,5 @@
 we are totally allowed to use normal variables.
 
 - To keep two similar components in sync, the right way to do this is lift their common state one layer up.
+
+- Hooks are ways to interact internally with React while it is rendering.

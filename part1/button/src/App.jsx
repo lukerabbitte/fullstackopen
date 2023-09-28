@@ -1,46 +1,32 @@
 import { useState } from 'react'
 
-const Clicker = () => {
-
-  const [count, setCount] = useState(0);
-    
+const Display = (props) => {
   return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count+1)}>Add one</button>
-      <button onClick={() => setCount(count-1)}>Subtract one</button>
-      <button onClick={() => setCount(count*count)}>Square</button>
-      <button onClick={() => setCount(count*count*count)}>Cube</button> {/* Declare event handlers directly. */}
-    </div>
+    <div>{props.counter}</div>
   )
 }
 
-const Hello = ({ name, age }) => { {/* Don't always have to pass the entire props object in. */}
-
-  const birthYearGuess = () => new Date().getFullYear() - age;
-
+const Button = (props) => {
   return (
-    <div>
-      <p>
-        Hello {name}, you are {age} years old
-      </p>
-      <p>
-        You were probably born in {birthYearGuess()}.
-      </p>
-    </div>
+    <button onClick={props.onClick}>
+      {props.label}
+    </button>
   )
 }
 
-const App = () => {
-  const name = 'Peter'
-  const age = 10
+const App = () => { {/* State that was common to both the display and the button were lifted to the lowest possible shared parent.*/}
+  const [ counter, setCounter ] = useState(0)
 
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+  
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={26 + 10} />
-      <Hello name={name} age={age} />
-      <Clicker></Clicker>
+      <Display counter={counter}/>
+      <Button label='Increase by one' onClick={increaseByOne}/>
+      <Button label='Decrease by one' onClick={decreaseByOne}/>
+      <Button label='Set to zero' onClick={setToZero}/>
     </div>
   )
 }

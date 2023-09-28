@@ -1,0 +1,41 @@
+{/*https://react.dev/learn/state-a-components-memory - state and input handlers*/}
+{/* Remember that hooks cannot be rendered conditionally */}
+
+import { useState } from 'react';
+
+export default function Form() {
+  const [firstName, setFirstName] = useState('');
+  const [secondName, setSecondName] = useState('');
+
+  const handleSubmit = e => {e.preventDefault()}
+
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
+  }
+
+  function handleSecondNameChange(e) {
+    setSecondName(e.target.value);
+  }
+
+  function handleReset() {
+    setFirstName('');
+    setSecondName('');
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        placeholder="First name"
+        value={firstName}
+        onChange={handleFirstNameChange}
+      />
+      <input
+        placeholder="Second name"
+        value={secondName}
+        onChange={handleSecondNameChange}
+      />
+      <h1>Hi, {firstName} {secondName}</h1>
+      <button onClick={handleReset}>Reset</button>
+    </form>
+  );
+}

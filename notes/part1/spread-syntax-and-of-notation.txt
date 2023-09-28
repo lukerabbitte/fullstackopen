@@ -13,4 +13,4 @@ function sum(...args) {
 
 - We can set default parameters like function avg(firstValue=0, secondValue=2) so that nothing will be undefined.
 
-- We can set default parameters like function avg(firstValue, ...args)
+- We can use rest syntax like function avg(firstValue, ...args) which 
