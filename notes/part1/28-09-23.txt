@@ -1,0 +1,8 @@
+- Remember that hooks cannot be rendered conditionally
+
+- React components are rendered first, then at an efficient time and with the minimal differences required, is given to the browser to paint.
+
+- For small use cases where the UI is not re-rendered and we don't have to remember any state within the component, but just use it for a quick logical purposes,
+we are totally allowed to use normal variables.
+
+- To keep two similar components in sync, the right way to do this is lift their common state one layer up.
