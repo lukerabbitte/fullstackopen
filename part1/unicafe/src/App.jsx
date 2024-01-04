@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Button = ({ handleClick, counter, label}) => {
+const Button = ({ handleClick, counter, label }) => {
   return (
     <div>
       <p>{label}</p>

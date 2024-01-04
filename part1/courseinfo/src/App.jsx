@@ -1,5 +1,5 @@
 const App = () => {
-  const course = {
+  const course = {  // could change to account for arbitrary number of courses
     name: 'Half Stack application development',
     parts: [
       {
@@ -25,6 +25,7 @@ const App = () => {
       <Content part={course.parts[2]} />
       <Contact fullName='Makira Hirako' />
       <Count parts={course.parts} />
+      <SymmetricDiff />
     </div>
   )
 }
@@ -32,7 +33,7 @@ const App = () => {
 {/* Card description={course.description} */}
 
 const Header = (props) => {
-  console.log(props)
+
   return (
     <div>
       <h1>
@@ -43,7 +44,7 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-  console.log(props)
+
   return (
     <>
       <p>
@@ -54,12 +55,39 @@ const Content = (props) => {
   )
 }
 
-const Count = (props) => {
-  console.log(props)
+const Count = ({ parts }) => {
+
+  const count = parts.reduce((sum, part) => sum + part.exercises, 0)
+
   return (
     <>
       <p>
-        {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
+        {count}
+      </p>
+    </>
+  )
+}
+
+const SymmetricDiff = () => {
+
+  const arrs = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+
+  const symDiff = arrs.reduce( (acc, cur) => {
+
+    cur.forEach((value) => {
+      acc.has(value) ? acc.delete(value) : acc.add(value); // turns out the dude online is an idiot. This is way simpler!
+    })
+
+    return acc;
+
+  }, new Set())
+
+  console.log('SymDiff result', symDiff)
+
+  return (
+    <>
+      <p>
+        {symDiff}
       </p>
     </>
   )
@@ -67,8 +95,6 @@ const Count = (props) => {
 
 // Each react component is a function
 const Contact = (props) => {
-  console.log("Processing contact");
-  console.log(`Contact = ${props.fullName}`)
   
   return (
     <>

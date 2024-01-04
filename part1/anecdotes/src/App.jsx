@@ -1,4 +1,49 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { createContext } from 'react';
+import { useContext } from 'react';
+
+const MyContext = createContext();
+
+const MyContextProvider = ({ children }) => {
+
+  const contextValue = {
+    message: "Hi from MyContextProvider",
+  }
+
+  return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>
+}
+
+const MessageLevelOne = ({ msg }) => {
+  return (
+    <div>
+      <MessageLevelTwo msg = {msg}/>
+    </div>
+  )
+}
+
+const MessageLevelTwo = ({ msg }) => {
+  return (
+    <div>
+      <MessageLevelThree msg = {msg}/>
+    </div>
+  )
+}
+
+const MessageLevelThree = ({ msg }) => {
+
+  const contextValue = useContext(MyContext);
+
+  return (
+    <div>
+      <p>
+        { msg } - from message level three fella
+      </p>
+      <p>
+        Or, I can use context to say {contextValue.message}
+      </p>
+    </div>
+  )
+}
 
 const App = () => {
   const anecdotes = [
@@ -17,6 +62,7 @@ const App = () => {
 
   // Util random no generator
   const randomNumber = (max, min) => (Math.floor(Math.random() * (max - min + 1) + min))
+  console.log(2);
 
   const handleVote = () => {
     const newVotes = [...votes];
@@ -27,14 +73,17 @@ const App = () => {
   const mostVotedIndex = votes.indexOf(Math.max(...votes)); // prob not super efficient but clean
 
   return (
-    <div>
-      <p>{anecdotes[selected]}</p>
-      <p>Votes: {votes[selected]}</p>
-      <button onClick={handleVote}>Vote</button>
-      <button onClick={() => setSelected(randomNumber(anecdotes.length - 1, 0))}>New one</button>
+    <MyContextProvider>
+      <div>
+        <p>{anecdotes[selected]}</p>
+        <p>Votes: {votes[selected]}</p>
+        <button onClick={handleVote}>Vote</button>
+        <button onClick={() => setSelected(randomNumber(anecdotes.length - 1, 0))}>New one</button>
 
-      <p> Anecdote with most votes: {anecdotes[mostVotedIndex]}</p>
-    </div>
+        <p> Anecdote with most votes: {anecdotes[mostVotedIndex]}</p>
+        <MessageLevelOne msg="I am your father!"/>
+      </div>
+    </MyContextProvider>
   )
 }
 
