@@ -1,32 +1,70 @@
 const App = () => {
-  const course = {  // could change to account for arbitrary number of courses
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 11
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'Syntax',
+          exercises: 9,
+          id: 3
+        },
+        {
+          name: 'Trouble',
+          exercises: 12,
+          id: 4
+        }
+      ]
+    }
+  ]
 
   return (
-    <div>
-      <Header course={course.name} />
-      <Content part={course.parts[0]} />
-      <Content part={course.parts[1]} />
-      <Content part={course.parts[2]} />
-      <Contact fullName='Makira Hirako' />
-      <Count parts={course.parts} />
-      <SymmetricDiff />
-    </div>
+    courses.map(course => (
+      <div>
+        <Header course={course.name} />
+        {course.parts.map(part => (
+          <Content part={part} />
+        ))}
+        <Contact fullName='Makira Hirako' />
+        <Count parts={course.parts} />
+      </div>
+    ))
   )
 }
 
@@ -58,6 +96,14 @@ const Content = (props) => {
 const Count = ({ parts }) => {
 
   const count = parts.reduce((sum, part) => sum + part.exercises, 0)
+
+  /*
+  // The long form of the reduce syntax
+  const count2 = parts.reduce((acc, cur) => {
+    acc += cur.exercises
+    return acc
+  }, 0)
+  */
 
   return (
     <>
