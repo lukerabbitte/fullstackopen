@@ -1,22 +1,10 @@
 import Note from './components/Note'
 import Notification from './components/Notification'
+import Footer from './components/Footer'
 import { useState, useEffect } from 'react'
 import noteService from './services/notes'
 import { v4 as uuidv4 } from 'uuid';
 
-const Footer = () => {
-  const footerStyle = {
-    color: 'green',
-    fontStyle: 'italic',
-    fontSize: 16
-  }
-  return (
-    <div style={footerStyle}>
-      <br />
-      <em>Luke's Notes App</em>
-    </div>
-  )
-}
 
 const App = () => {
 
